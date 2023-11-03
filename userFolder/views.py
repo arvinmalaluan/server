@@ -1,5 +1,5 @@
 from .serializers import *
-from .models import Account
+from .models import Account, Role
 
 import jwt
 import secrets
@@ -104,3 +104,8 @@ def update_user_info(request):
 
     except Account.DoesNotExist:
         return Response({'success': 0, 'message': 'not found'})
+
+
+class DefineRoles(generics.ListCreateAPIView):
+    queryset = Role.objects.all()
+    serializer_class = SerializeRole

@@ -3,7 +3,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import Account
+from .models import Account, Role
 from django.contrib.auth.hashers import make_password
 
 
@@ -24,3 +24,9 @@ class UserAccountSerializer(serializers.ModelSerializer):
                 validated_data['password'])
 
         return super().update(instance, validated_data)
+
+
+class SerializeRole(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'
